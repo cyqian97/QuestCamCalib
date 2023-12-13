@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<QCARInfo>
+    <TargetSet version="36.0" toolVersion="v5.7.10">
+        <ModelTarget name="SpaceShuttle" targetId="8f90221ccf2d4dcf88c0c11c33067dbe" bbox="-0.140809 -0.096096 -0.000055 0.140816 0.096115 0.158399" version="13.0" toolVersion="v5.7.10" trackingMode="car" upVector="0.0 0.0 1.0" optimizeTrackingFor="default" realisticTextures="no" />
+        <ModelTarget name="RacePlane_Texture" targetId="a725055d8db14c14874e4ecbead76b43" bbox="-0.114563 -0.000065 -0.094508 0.114421 0.085173 0.086740" version="13.0" toolVersion="v5.7.10" trackingMode="scan" upVector="0.0 1.0 0.0" optimizeTrackingFor="default" realisticTextures="yes" />
+    </TargetSet>
+    <Assembly name="SpaceShuttle" assemblyId="74eca6ad0b2a4c5281a44320d2f49d5b">
+        <Part name="SpaceShuttle" translation="0 0 0" rotation="AD: 0 0 1 0" />
+        <EntryPoint name="(none)" trained="yes" />
+    </Assembly>
+    <Assembly name="RacePlane_Texture" assemblyId="29ad2728bcae4eef8bfb0913f030c8f2">
+        <Part name="RacePlane_Texture" translation="0 0 0" rotation="AD: 0 0 1 0" />
+        <EntryPoint name="(none)" trained="yes" />
+    </Assembly>
+    <ModelTargetDatabase mtDBid="8fc99a4d25ad460185de01c559a04db6" name="AR-Classroom-PlaneTexture" toolVersion="v5.7.10" version="36.0" />
+</QCARInfo>
