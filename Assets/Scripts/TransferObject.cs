@@ -16,9 +16,9 @@ public class TransferObject : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rotation_offset = Quaternion.identity;
+        // rotation_offset = Quaternion.identity;
 
-        model.SetActive(true);
+        // model.SetActive(true);
     }
 
     // Update is called once per frame
