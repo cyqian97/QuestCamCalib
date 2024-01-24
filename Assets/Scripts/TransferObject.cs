@@ -76,34 +76,35 @@ public class TransferObject : MonoBehaviour
         }
 
 
-        if (OVRInput.Get(OVRInput.Button.One))
-        {
-            position_scale *= 1.01f;
-        }
-        if (OVRInput.Get(OVRInput.Button.Two))
-        {
-            position_scale /= 1.01f;
-        }
+        // if (OVRInput.Get(OVRInput.Button.One))
+        // {
+        //     position_scale *= 1.01f;
+        // }
+        // if (OVRInput.Get(OVRInput.Button.Two))
+        // {
+        //     position_scale /= 1.01f;
+        // }
 
 
-        if (OVRInput.Get(OVRInput.Button.Three))
-        {
-            rotation_scale *= 1.01f;
-        }
-        if (OVRInput.Get(OVRInput.Button.Four))
-        {
-            rotation_scale /= 1.01f;
-        }
-
-        Debug.Log(string.Format("position_scale: {0}", position_scale));
-        Debug.Log(string.Format("pos_offset: {0}, {1}, {2}", position_offset.x, position_offset.y, position_offset.z));
-        Debug.Log(string.Format("rot_offset: {0}, {1}, {2}, {3}", rotation_offset.x, rotation_offset.y, rotation_offset.z, rotation_offset.w));
-        Debug.Log(string.Format("Detect pos: {0}, {1}, {2}", detection.transform.position.x, detection.transform.position.y, detection.transform.position.z));
-        Debug.Log(string.Format("Detect rot: {0}, {1}, {2}, {3}", detection.transform.rotation.x, detection.transform.rotation.y, detection.transform.rotation.z, detection.transform.rotation.w));
+        // if (OVRInput.Get(OVRInput.Button.Three))
+        // {
+        //     rotation_scale *= 1.01f;
+        // }
+        // if (OVRInput.Get(OVRInput.Button.Four))
+        // {
+        //     rotation_scale /= 1.01f;
+        // }
 
         if (detection.GetComponent<ObserverBehaviour>().TargetStatus.Status.ToString().Equals("TRACKED"))
         {
             model.SetActive(true);
+
+            Debug.Log(string.Format("position_scale: {0}", position_scale));
+            Debug.Log(string.Format("pos_offset: {0}, {1}, {2}", position_offset.x, position_offset.y, position_offset.z));
+            Debug.Log(string.Format("rot_offset: {0}, {1}, {2}, {3}", rotation_offset.x, rotation_offset.y, rotation_offset.z, rotation_offset.w));
+            Debug.Log(string.Format("Detect pos: {0}, {1}, {2}", detection.transform.position.x, detection.transform.position.y, detection.transform.position.z));
+            Debug.Log(string.Format("Detect rot: {0}, {1}, {2}, {3}", detection.transform.rotation.x, detection.transform.rotation.y, detection.transform.rotation.z, detection.transform.rotation.w));
+
             model.transform.localPosition = position_scale * detection.transform.position + position_offset;
 
 
@@ -111,7 +112,7 @@ public class TransferObject : MonoBehaviour
             Vector3 axis = Vector3.zero;
             detection.transform.rotation.ToAngleAxis(out angle, out axis);
             angle *= rotation_scale;
-            model.transform.localRotation =  Quaternion.AngleAxis(angle, axis) * rotation_offset;
+            model.transform.localRotation = Quaternion.AngleAxis(angle, axis) * rotation_offset;
         }
         else
         {
