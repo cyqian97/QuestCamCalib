@@ -105,7 +105,7 @@ public class TransferObject : MonoBehaviour
             Debug.Log(string.Format("Detect pos: {0}, {1}, {2}", detection.transform.position.x, detection.transform.position.y, detection.transform.position.z));
             Debug.Log(string.Format("Detect rot: {0}, {1}, {2}, {3}", detection.transform.rotation.x, detection.transform.rotation.y, detection.transform.rotation.z, detection.transform.rotation.w));
 
-            model.transform.localPosition = position_scale * detection.transform.position + position_offset;
+            model.transform.localPosition = position_scale * (rotation_offset * detection.transform.position) + position_offset;
 
 
             float angle = 0.0f;
