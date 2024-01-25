@@ -52,27 +52,27 @@ public class TransferObject : MonoBehaviour
 
         if (OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger))
         {
-            rotation_offset *= Quaternion.AngleAxis(-1, Vector3.forward);
+            rotation_offset *= Quaternion.AngleAxis(-0.2f, Vector3.forward);
         }
         if (OVRInput.Get(OVRInput.Button.PrimaryHandTrigger))
         {
-            rotation_offset *= Quaternion.AngleAxis(1, Vector3.forward);
+            rotation_offset *= Quaternion.AngleAxis(0.2f, Vector3.forward);
         }
         if (OVRInput.Get(OVRInput.Button.PrimaryThumbstickUp))
         {
-            rotation_offset *= Quaternion.AngleAxis(-1, Vector3.right);
+            rotation_offset *= Quaternion.AngleAxis(-0.2f, Vector3.right);
         }
         if (OVRInput.Get(OVRInput.Button.PrimaryThumbstickDown))
         {
-            rotation_offset *= Quaternion.AngleAxis(1, Vector3.right);
+            rotation_offset *= Quaternion.AngleAxis(0.2f, Vector3.right);
         }
         if (OVRInput.Get(OVRInput.Button.PrimaryThumbstickRight))
         {
-            rotation_offset *= Quaternion.AngleAxis(-1, Vector3.up);
+            rotation_offset *= Quaternion.AngleAxis(-0.2f, Vector3.up);
         }
         if (OVRInput.Get(OVRInput.Button.PrimaryThumbstickLeft))
         {
-            rotation_offset *= Quaternion.AngleAxis(1, Vector3.up);
+            rotation_offset *= Quaternion.AngleAxis(0.2f, Vector3.up);
         }
 
 
@@ -108,11 +108,12 @@ public class TransferObject : MonoBehaviour
             model.transform.localPosition = position_scale * (rotation_offset * detection.transform.position) + position_offset;
 
 
-            float angle = 0.0f;
-            Vector3 axis = Vector3.zero;
-            detection.transform.rotation.ToAngleAxis(out angle, out axis);
-            angle *= rotation_scale;
-            model.transform.localRotation = Quaternion.AngleAxis(angle, axis) * rotation_offset;
+            // float angle = 0.0f;
+            // Vector3 axis = Vector3.zero;
+            // detection.transform.rotation.ToAngleAxis(out angle, out axis);
+            // angle *= rotation_scale;
+            // model.transform.localRotation = Quaternion.AngleAxis(angle, axis) * rotation_offset;
+            model.transform.localRotation = rotation_offset*detection.transform.rotation;
         }
         else
         {
