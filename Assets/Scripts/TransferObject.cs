@@ -12,11 +12,12 @@ public class TransferObject : MonoBehaviour
     public float position_scale;
     public float rotation_scale;
     public Vector3 position_offset;
+    public Quaternion direction_offset;
     public Quaternion rotation_offset;
     // Start is called before the first frame update
     void Start()
     {
-        // rotation_offset = Quaternion.identity;
+        // direction_offset = Quaternion.identity;
 
         // model.SetActive(true);
     }
@@ -76,14 +77,14 @@ public class TransferObject : MonoBehaviour
         }
 
 
-        // if (OVRInput.Get(OVRInput.Button.One))
-        // {
-        //     position_scale *= 1.01f;
-        // }
-        // if (OVRInput.Get(OVRInput.Button.Two))
-        // {
-        //     position_scale /= 1.01f;
-        // }
+        if (OVRInput.Get(OVRInput.Button.One))
+        {
+            position_scale *= 1.01f;
+        }
+        if (OVRInput.Get(OVRInput.Button.Two))
+        {
+            position_scale /= 1.01f;
+        }
 
 
         // if (OVRInput.Get(OVRInput.Button.Three))
@@ -101,19 +102,22 @@ public class TransferObject : MonoBehaviour
 
             Debug.Log(string.Format("position_scale: {0}", position_scale));
             Debug.Log(string.Format("pos_offset: {0}, {1}, {2}", position_offset.x, position_offset.y, position_offset.z));
+            Debug.Log(string.Format("dir_offset: {0}, {1}, {2}, {3}", direction_offset.x, direction_offset.y, direction_offset.z, direction_offset.w));
             Debug.Log(string.Format("rot_offset: {0}, {1}, {2}, {3}", rotation_offset.x, rotation_offset.y, rotation_offset.z, rotation_offset.w));
             Debug.Log(string.Format("Detect pos: {0}, {1}, {2}", detection.transform.position.x, detection.transform.position.y, detection.transform.position.z));
-            Debug.Log(string.Format("Detect rot: {0}, {1}, {2}, {3}", detection.transform.rotation.x, detection.transform.rotation.y, detection.transform.rotation.z, detection.transform.rotation.w));
+            // Debug.Log(string.Format("Detect rot: {0}, {1}, {2}, {3}", detection.transform.rotation.x, detection.transform.rotation.y, detection.transform.rotation.z, detection.transform.rotation.w));
 
-            model.transform.localPosition = position_scale * (rotation_offset * detection.transform.position) + position_offset;
+            var _pos = detection.transform.position;
+            _pos.z *= position_scale;
+            model.transform.localPosition = (direction_offset * _pos) + position_offset;
 
 
             // float angle = 0.0f;
             // Vector3 axis = Vector3.zero;
             // detection.transform.rotation.ToAngleAxis(out angle, out axis);
             // angle *= rotation_scale;
-            // model.transform.localRotation = Quaternion.AngleAxis(angle, axis) * rotation_offset;
-            model.transform.localRotation = rotation_offset*detection.transform.rotation;
+            // model.transform.localRotation = Quaternion.AngleAxis(angle, axis) * direction_offset;
+            model.transform.localRotation = direction_offset*rotation_offset*detection.transform.rotation;
         }
         else
         {
